@@ -33,7 +33,7 @@ img{
 }
 
 #navbar li{
-    display: inline;
+    display: inline-block;
     padding-right: 20px;
     list-style: none;
 }

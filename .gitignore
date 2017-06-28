@@ -1,3 +1,2 @@
-exercise/web1/.idea/
-exercise/web2/.idea/
-/.idea
+*/.idea/
+*/*/.idea/

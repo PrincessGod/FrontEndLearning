@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Anonymous Functions</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<!--Jumbotron-->
+<div class="jumbotron">
+    <div class="container">
+        <h1>Anonymous Method and Lambda Expressions in C#</h1>
+        <p>C#中的匿名方法和Lambda表达式。介绍什么是匿名方法，实现原理是什么，有什么优点；什么是Lambda表达式，基本原理和使用目的，什么情况下使用Lambda表达式；最后说明两者的联系。</p>
+        <p class="text-right">2017/7/4</p>
+    </div>
+</div>
+<!--Anonymous Functions-->
+<div class="container">
+    <!--Blockquote-->
+    <h2 class="text-primary" id="anonymous-functions">Anonymous Functions <small>匿名函数</small></h2>
+    <h3>Definition of Anonymous Functions <small>匿名函数的定义</small></h3>
+    <br/>
+    <blockquote>
+        <p>An anonymous function is an "inline" <strong>statement</strong> or <strong>expression</strong> that can be used wherever a <a href="https://stackoverflow.com/questions/2019402/when-why-to-use-delegates" title="What When and Why use delegate"><code>delegate</code></a> type is expected. You can use it to initialize a named delegate or pass it instead of a named delegate type as a method parameter.</p>
+        <footer>from <cite title="Official Definition of Anonymous Functions"> <a target="_blank" href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions">MicroSoft Programming Guide</a></cite></footer>
+    </blockquote>
+    <blockquote>
+        <p>匿名函数是一个“内联”语句或表达式，可在需要委托类型的任何地方使用。 可以使用匿名函数来初始化命名委托，或传递命名委托（而不是命名委托类型）作为方法参数。</p>
+        <footer>摘自 <cite title="官方中文翻译"><a target="_blank" href="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions">微软编程指南</a></cite></footer>
+    </blockquote>
+    <p>匿名函数包括以下两部分</p>
+    <ul>
+        <li><a href="#anonymous-method">匿名方法</a></li>
+        <li><a href="#anonymous-method">Lambda 表达式</a></li>
+    </ul>
+    <br/>
+    <hr/>
+</div>
+
+<!--Anonymous Method-->
+<div class="container">
+    <h2 class="text-primary" id="anonymous-method">Anonymous Method <small>匿名方法</small></h2>
+    <!--Usage-->
+    <h3>Usage of Anonymous Method <small>匿名方法的用法</small></h3>
+    <br/>
+    <p>在C#2.0版本之前，委托只能通过命名的方法去声明。但是C#2.0引入了匿名函数。</p>
+    <p>在声明委托时，创建一个匿名方法作为<span title='inline code block'><ins>“内联”代码块</ins></span>传递给委托，可以替代传递方法名给委托。如下所示：</p>
+    <pre>using System;
+
+namespace Anonymous
+{
+    internal class Class1
+    {
+        public delegate void Del();
+
+        private static void Main(string[] args)
+        {
+            Del obj = delegate() { Console.WriteLine("Anonymous Method"); };
+
+            obj();
+            Console.ReadKey();
+        }
+    }
+}</pre>
+    <br/>
+    <p>在上例中使用匿名方法可以减少代码行数，也可以确保名称空间的整洁。在上例中使用了代码块声明委托而不是方法名。匿名方法使用<code>delegate</code>关键字声明同时使用代码块进行初始化，你也可以给匿名函数传递参数，如下所示：</p>
+    <pre>using System;
+
+namespace Anonymous
+{
+    internal class Class1
+    {
+        public delegate void Del(string mesg);
+
+        private static void Main(string[] args)
+        {
+            Del obj = delegate(string mesg) { Console.WriteLine(mesg); };
+
+            obj("Anonymous Method");
+            Console.ReadKey();
+        }
+    }
+}</pre>
+    <div class="text-danger"> <h4>注意</h4> <p>不能使用 <code>goto</code>，<code>break</code> 和 <code>continue</code> 语句跳出匿名方法代码块。</p> </div>
+    <br/>
+
+    <h3>What is Anonymous Method <small>匿名方法究竟是什么</small></h3>
+    <br/>
+    <blockquote>
+        <p>Anonymous methods were introduced into C# 2 as a way of creating delegate instances without having to write a separate method. They can <em>capture</em> local variables within the enclosing method, making them a form of <em>closure</em>.</p>
+        <footer>from <cite>Jon Skeet</cite> on <a target="_blank" href="https://stackoverflow.com/questions/6008097/what-are-anonymous-methods-in-c">Stackoverflow</a></footer>
+    </blockquote>
+    <br/>
+    <hr/>
+</div>
+
+<!--Lambda Expression-->
+<div class="container">
+    <h2 class="text-primary">Lambda Expression <small>Lambda 表达式</small></h2>
+    <h3>Definition of Lambda Expression <small>Lambda 表达式的定义</small></h3>
+    <br/>
+    <blockquote>
+        <p>A lambda expression is an <a href="#anonymous-functions">anonymous function</a> that you can use to create <a target="_blank" href="https://stackoverflow.com/questions/2019402/when-why-to-use-delegates" title="What When and Why use delegate"><code>delegate</code></a> or <a
+                href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/expression-trees/index" target="_blank" title="Expression Trees (C#)"><code>expression tree</code></a> types. By using lambda expressions, you can write local functions that can be passed as arguments or returned as the value of function calls. Lambda expressions are particularly helpful for writing LINQ query expressions.</p>
+        <footer>from <cite> <a target="_blank" href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions">Microsoft Programming Guide</a></cite></footer>
+    </blockquote>
+    <br/>
+    <h4>Expression Trees <small>表达式树</small></h4>
+    <br/>
+    <p>表达式树是一种树状的表达式数据结构，每一个节点都是一个表达式。例如方法的调用和二元运算符 <code> x < y </code>。</p>
+    <p>下面是一个读取表达式树中节点内容的简单例子：</p>
+    <pre>using System;
+using System.Linq.Expressions;
+
+namespace Anonymous
+{
+    internal class Class1
+    {
+        private static void Main(string[] args)
+        {
+            // Create an expression tree.
+            Expression&lt;Func&lt;int, bool>> exprTree = num => num < 5;
+
+            // Decompose the expression tree.
+            ParameterExpression param = (ParameterExpression)exprTree.Parameters[0];
+            BinaryExpression operation = (BinaryExpression)exprTree.Body;
+            ParameterExpression left = (ParameterExpression)operation.Left;
+            ConstantExpression right = (ConstantExpression)operation.Right;
+
+            Console.WriteLine("Decomposed expression: {0} => {1} {2} {3}",
+                param.Name, left.Name, operation.NodeType, right.Value);
+
+            // This code produces the following output:
+            // Decomposed expression: num => num LessThan 5
+            Console.ReadKey();
+        }
+    }
+}</pre>
+    <br/>
+    <p>表达式树封装了表达式中的数据结构，在<ins title="runtime">运行时</ins>根据具体编译环境进行编译，因此不会生成 <a target="_blank" href="https://en.wikipedia.org/wiki/Common_Intermediate_Language" title="Common Intermediate Language">CIL</a>逻辑代码，所以在动态语言运行时（<a
+           target="_blank" href="https://en.wikipedia.org/wiki/Common_Language_Runtime" title="Common Language Runtime">CLR</a>）调用时可发送表达式树而非CIL中的真实代码，从而提供了动态语言和.NetFramework的互操作性。</p>
+    <br/>
+    <blockquote>
+        <p>Expression trees are a way of expressing logic so that other code can interrogate it. When a lambda expression is converted into an expression tree, the compiler doesn't emit the IL for the lambda expression; it emits IL which will build an expression tree representing the same logic.</p>
+        <footer>from <cite><a target="_blank" href="https://stackoverflow.com/users/22656/jon-skeet">Jon Skeet</a></cite></footer>
+    </blockquote>
+    <br/>
+    <h3>Lambda Expressions create delegate <small>Lambda 表达式创建委托</small></h3>
+    <br/>
+    <p>Lambda 表达式伴随着C#3.0出现， 其功能之一就是用更简便的方式创建C#2.0中的委托，所以在以后的发展中代替大多数委托的角色。下面是Lambda 表达式创建委托的例子。</p>
+    <pre>using System;
+
+namespace Lambda
+{
+    internal class Class1
+    {
+        public delegate void Del();
+
+        private static void Main(string[] args)
+        {
+            Del obj = () => { Console.WriteLine("Lambda Expressions"); };
+
+            obj();
+            Console.ReadKey();
+        }
+    }
+}</pre>
+    <pre>using System;
+
+namespace Lambda
+{
+    internal class Class1
+    {
+        public delegate void Del(string mesg);
+
+        private static void Main(string[] args)
+        {
+            Del obj = (string mesg) => { Console.WriteLine(mesg); };
+
+            obj("Lambda Expressions");
+            Console.ReadKey();
+        }
+    }
+}</pre>
+    <br/>
+    <p>Lambda 表达式可以更简化：</p>
+    <ul>
+        <li>当参数类型可以推断出（例如 Action&lt;int, bool&gt;）时， 参数类型声明可以省略；</li>
+        <li>当Lambda 表达式只有一个参数时，() 可以省略；</li>
+        <li>当Lambda 表达式只有一条语句时，{}可以省略，并且有返回值的时候 return 也可以省略。</li>
+    </ul>
+    <p>所以以上代码可以简写为以下形式：</p>
+    <pre>using System;
+
+namespace Lambda
+{
+    internal class Class1
+    {
+        public delegate void Del();
+
+        private static void Main(string[] args)
+        {
+            Del obj = () => Console.WriteLine("Lambda Expressions");
+
+            obj();
+            Console.ReadKey();
+        }
+    }
+}</pre>
+    <pre>using System;
+
+namespace Lambda
+{
+    internal class Class1
+    {
+        public delegate void Del(string mesg);
+
+        private static void Main(string[] args)
+        {
+            Del obj = mesg => Console.WriteLine(mesg);
+
+            obj("Lambda Expressions");
+            Console.ReadKey();
+        }
+    }
+}</pre>
+    <br/>
+    <h3>Lambda Expressions as Expression Trees <small>Lambda 表达式作为表达式树使用</small></h3>
+    <br/>
+    <p>表达式树可以用Lambda 表达式创建：</p>
+    <pre>using System;
+using System.Linq.Expressions;
+
+namespace Lambda
+{
+    internal class Class1
+    {
+        private static void Main(string[] args)
+        {
+            Expression&lt;Func&lt;int, bool>> isPositiveExpression = int32 => int32 > 0;
+        }
+    }
+}</pre>
+    <p>上例中Lambda 表达式创建的是<code>Expression</code>对象而不是<code>Func&lt;int, bool></code>委托对象。<code>Expression</code>引用的是表达式树而不是匿名方法。</p>
+    <br/>
+    <div class="text-danger"> <h4>注意</h4> <p>如上所示的Lambda 表达式是 Expression Lambda， 而带有花括号{}并且有多条语句的Lambda 表达式 是 Statement Lambda， Statement Lambda 不能直接转换为表达式树。如下所示：</p> </div>
+    <pre>using System;
+using System.Linq.Expressions;
+
+namespace Lambda
+{
+    internal class Class1
+    {
+        private static void Main(string[] args)
+        {
+            Expression&lt;Func&lt;int, bool>> isPositiveExpression = int32 => { return int32 > 0; };
+        }
+    }
+}</pre>
+    <br/>
+
+    <h3>Lambda Expressions and Anonymous Method <small>Lambda 表达式和匿名方法</small></h3>
+    <br/>
+    <p>本质上他们都是匿名函数，根据匿名函数的定义，所以都是“内联”的陈述内容或表达式，都能用来代替使用方法名初始化委托。</p>
+    <p>但Lambda 表达式还可以用来初始化表达式树，这也使得它在LINQ中有很好的应用场景，结合表达式树和LINQ可以实现跨语言平台互操作，比如对不同数据库使用同一套代码操作。</p>
+    <p>匿名方法只有一个特性区别于Lambda 表达式，匿名方法可以省略方法签名中的参数，而Lambda 表达式不能省略方法签名中的参数，这意味着一个匿名方法可以转换成多种不同签名的委托。如下所示：</p>
+    <pre>using System;
+
+namespace Anonymous
+{
+    internal class Class1
+    {
+        public delegate void Del(string mesg);
+
+        private static void Main(string[] args)
+        {
+            Del obj = delegate { Console.WriteLine("Anonymous Method has omit parameter."); };
+            obj("Anonymous Method");
+
+            obj = mesg => Console.WriteLine("Lambda Expressions can't omit parameter.");
+            obj("Anonymous Method");
+
+            Console.ReadKey();
+        }
+    }
+}</pre>
+    <br/>
+    <h3>Test <small>小测试</small></h3>
+    <br/>
+    <p>下面代码中的<code>customer1</code> 到 <code>customer6</code> 能否正常运行，值是什么？</p>
+    <pre>using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Anonymous
+{
+    internal class Customer
+    {
+        public int ID { get; set; }
+
+        public static bool Test(Customer x)
+        {
+            return x.ID == 5;
+        }
+    }
+
+    internal class Class1
+    {
+        private static void Main(string[] args)
+        {
+            var custs = new List&lt;Customer>();
+            custs.Add(new Customer {ID = 1});
+            custs.Add(new Customer {ID = 5});
+
+            var customer1 = custs.First(new Func&lt;Customer, bool>(delegate(Customer x) { return x.ID == 5; }));
+            var customer2 = custs.First(new Func&lt;Customer, bool>(x => x.ID == 5));
+            var customer3 = custs.First(delegate(Customer x) { return x.ID == 5; });
+            var customer4 = custs.First((Customer x) => x.ID == 5);
+            var customer5 = custs.First(x => x.ID == 5);
+            var customer6 = custs.First(Customer.Test);
+
+            if (customer2 == customer1 && customer3 == customer1 && customer4 == customer1 && customer5 == customer1 &&
+                customer6 == customer1)
+                Console.WriteLine("All Same");
+            Console.ReadKey();
+        }
+    }
+}</pre>
+</div>
+
+<!--Quote-->
+<div class="container">
+    <h2 class="text-primary">Relevant Resource <small>相关资料</small></h2>
+    <br/>
+    <ul>
+        <li><a target="_blank" href="http://www.c-sharpcorner.com/UploadFile/d6fefe/delegate-anonymous-function-and-lambda-expression-in-C-Sharp/">Delegates, Anonymous Functions and Lambda Expressions in C#</a></li>
+        <li><a target="_blank" href="https://www.codeproject.com/Articles/47887/C-Delegates-Anonymous-Methods-and-Lambda-Expressio">C# Delegates, Anonymous Methods, and Lambda Expressions – O My!</a></li>
+        <li><a target="_blank" href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions">Anonymous Functions (C# Programming Guide)</a></li>
+        <li><a target="_blank" href="https://stackoverflow.com/questions/6008097/what-are-anonymous-methods-in-c">What are anonymous methods in C#?</a></li>
+        <li><a target="_blank" href="https://weblogs.asp.net/dixin/understanding-csharp-features-5-lambda-expression">Understanding C# Features (5) Lambda Expression, Anonymous Function and Expression Tree</a></li>
+    </ul>
+</div>
+<div style="height: 300px"></div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-3.2.1.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

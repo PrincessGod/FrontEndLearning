@@ -73,7 +73,7 @@ body{
 .main-color-bg{
     background-color: #e74c3c !important;
     border-color: #c0392b !important;
-    color: white;
+    color: white !important;
 }
 
 /*Header*/
@@ -97,6 +97,30 @@ body{
 .breadcrumb a{
     color: #333333;
 }
+
+/*Progress Bar*/
+.progress-bar{
+    background: #333333;
+    color: #ffffff;
+}
+
+.dash-box{
+    text-align: center;
+}
+
+/*Footer*/
+#footer{
+    background: #333333;
+    color: #ffffff;
+    text-align: center;
+    padding:30px;
+    margin-top: 30px;
+}
+
+#login{
+    margin-top: 30px;
+}
+
 
 @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {

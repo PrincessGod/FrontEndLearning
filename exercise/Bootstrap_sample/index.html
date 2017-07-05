@@ -8,6 +8,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-default">
@@ -49,7 +50,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">Add Page</a></li>
+                            <li><a type="button" href="" data-toggle="modal" data-target="#AddPage">Add Page</a></li>
                             <li><a href="#">Add Post</a></li>
                             <li><a href="#">Add User</a></li>
                             <li role="separator" class="divider"></li>
@@ -81,16 +82,158 @@
                         <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge">15</span></a>
                         <a href="users.html" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">183</span></a>
                     </div>
+                    <div class="well">
+                        <h4>Disk Space Used</h4>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                <span class="sr-only">60% Complete</span>
+                            </div>
+                        </div>
+                        <h4>Bandwidth Used</h4>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+                                <span class="sr-only">30% Complete</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-9">
+                    <!--Website Overview-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading main-color-bg">
+                            <h3 class="panel-title">Website Overview</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-3">
+                                <div class="well dash-box">
+                                    <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 183</h2>
+                                    <h4>Users</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="well dash-box">
+                                    <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 16</h2>
+                                    <h4>Pages</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="well dash-box">
+                                    <h2><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 15</h2>
+                                    <h4>Posts</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="well dash-box">
+                                    <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> 358</h2>
+                                    <h4>Visitors</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <!--Latest Users-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Latest Users</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped">
+                                <tr>
+                                    <th>Company</th>
+                                    <th>Contact</th>
+                                    <th>Country</th>
+                                </tr>
+                                <tr>
+                                    <td>Alfreds Futterkiste</td>
+                                    <td>Maria Anders</td>
+                                    <td>Germany</td>
+                                </tr>
+                                <tr>
+                                    <td>Centro comercial Moctezuma</td>
+                                    <td>Francisco Chang</td>
+                                    <td>Mexico</td>
+                                </tr>
+                                <tr>
+                                    <td>Ernst Handel</td>
+                                    <td>Roland Mendel</td>
+                                    <td>Austria</td>
+                                </tr>
+                                <tr>
+                                    <td>Island Trading</td>
+                                    <td>Helen Bennett</td>
+                                    <td>UK</td>
+                                </tr>
+                                <tr>
+                                    <td>Laughing Bacchus Winecellars</td>
+                                    <td>Yoshi Tannamuri</td>
+                                    <td>Canada</td>
+                                </tr>
+                                <tr>
+                                    <td>Magazzini Alimentari Riuniti</td>
+                                    <td>Giovanni Rovelli</td>
+                                    <td>Italy</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery-3.2.1.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
-</body>
+
+    <footer id="footer">
+        <p>Copyright XYZ, &copy; 2017</p>
+    </footer>
+    <!--Modals-->
+
+    <!--Add Page-->
+    <div class="modal fade" id="AddPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add Page</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Page Title</label>
+                            <input type="text" class="form-control" placeholder="Page Title">
+                        </div>
+                        <div class="form-group">
+                            <label>Page Body</label>
+                            <textarea name="editor1" class="form-control" placeholder="Page Body"></textarea>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Published
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta Tags</label>
+                            <input type="text" class="form-control" placeholder="Add Some Tags...">
+                        </div>
+                        <div class="form-group">
+                            <label>Meta Description</label>
+                            <input type="text" class="form-control" placeholder="Add Meta Description...">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        CKEDITOR.replace( 'editor1' );
+    </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    </body>
 </html>

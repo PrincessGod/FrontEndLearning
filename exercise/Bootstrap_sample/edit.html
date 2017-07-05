@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap Test | Post</title>
+    <title>Bootstrap Test | Edit Page</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -26,7 +26,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="index.html">Dashboard</a></li>
                 <li><a href="pages.html">Pages</a></li>
-                <li class="active"><a href="posts.html">Posts</a></li>
+                <li><a href="posts.html">Posts</a></li>
                 <li><a href="users.html">Users</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -41,7 +41,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Posts <small>Manage Blog Posts</small></h1>
+                <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Edit Page <small>About</small></h1>
             </div>
             <div class="col-md-2">
                 <div class="dropdown create">
@@ -66,7 +66,8 @@
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="index.html">Dashboard</a></li>
-            <li class="active">Posts</li>
+            <li><a href="pages.html">Pages</a></li>
+            <li class="active">Edit Page</li>
         </ol>
     </div>
 </section>
@@ -102,48 +103,35 @@
                 <!--Website Overview-->
                 <div class="panel panel-default">
                     <div class="panel-heading main-color-bg">
-                        <h3 class="panel-title">Posts</h3>
+                        <h3 class="panel-title">Edit Page</h3>
                     </div>
                     <div class="panel-body">
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input class="form-control" type="text" placeholder="Filter Posts...">
+                        <form>
+                            <div class="form-group">
+                                <label>Page Title</label>
+                                <input type="text" class="form-control" placeholder="Page Title" value="About">
                             </div>
-                        </div>
-                        <br>
-                        <table class="table table-striped table-hover">
-                            <tr>
-                                <th>Title</th>
-                                <th>Published</th>
-                                <th>Created</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <td>Blog Post 1</td>
-                                <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                <td>Dec 12, 2016</td>
-                                <td><a class="btn btn-default" href="edit.html">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                            </tr>
-                            <tr>
-                                <td>Blog Post 2</td>
-                                <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                <td>Dec 13, 2016</td>
-                                <td><a class="btn btn-default" href="edit.html">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                            </tr>
-                            <tr>
-                                <td>Blog Post 3</td>
-                                <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-                                <td>Dec 13, 2016</td>
-                                <td><a class="btn btn-default" href="edit.html">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                            </tr>
-                            <tr>
-                                <td>Blog Post 4</td>
-                                <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                <td>Dec 14, 2016</td>
-                                <td><a class="btn btn-default" href="edit.html">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                            </tr>
-                        </table>
+                            <div class="form-group">
+                                <label>Page Body</label>
+                                <textarea name="editor1" class="form-control" placeholder="Page Body">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur assumenda, deleniti deserunt earum enim magnam maiores minima molestiae molestias necessitatibus officia provident quaerat quasi quia quisquam, recusandae sed sunt unde!
+                                </textarea>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" checked> Published
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Meta Tags</label>
+                                <input type="text" class="form-control" placeholder="Add Some Tags..." value="tag1,tag2">
+                            </div>
+                            <div class="form-group">
+                                <label>Meta Description</label>
+                                <input type="text" class="form-control" placeholder="Add Meta Description..." value="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+                            </div>
+                            <input type="submit" class="btn btn-default" value="Submit">
+                        </form>
                     </div>
                 </div>
 
